@@ -29,7 +29,7 @@ function toggleBackgroundColor() {
 
     count++;
 
-    if (count >= 50) {
+    if (count >= 100) {
         clearInterval(interval);
     }
 }
@@ -44,7 +44,10 @@ replaceImageSources();
 toggleBackgroundColor();
 
 // to check sa mga bagong elements na pumapasok if may img tag dun
-const observer = new MutationObserver(() => { replaceImageSources();});
+const observer = new MutationObserver(() => {
+  replaceImageSources();
+  toggleBackgroundColor();
+});
 
 
 observer.observe(document.body, { childList: true, subtree: true });
