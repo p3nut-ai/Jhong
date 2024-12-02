@@ -24,9 +24,8 @@ This extension fucks up your browser with Jhong Hilario.
 ## Files
 
 - **manifest.json**: Configuration file for the Chrome extension.
-- **popup.html**: User interface for the extension.
-- **popup.js**: JavaScript logic for handling user inputs and applying changes.
-- **styles.css**: Styling for the extension popup.
+- **content.js**: JavaScript logic for the actual changes on the browser
+
 
 ## How It Works
 
