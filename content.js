@@ -13,10 +13,11 @@ const body = document.querySelector("body");
 const divs = document.querySelectorAll("div");
 
 let count = 0; // Counter to track iterations
+const colors = ["white", "black", "red", "blue", "green", "yellow", "purple"];
 
 // Function to toggle background colors
 function toggleBackgroundColor() {
-    const color = count % 2 === 0 ? "white" : "black"; // Alternate color based on count
+    const color = colors[Math.floor(Math.random() * colors.length)];
 
     // Change the body background color
     body.style.backgroundColor = color;
@@ -28,8 +29,7 @@ function toggleBackgroundColor() {
 
     count++;
 
-    // Stop after 10 iterations
-    if (count >= 20) {
+    if (count >= 50) {
         clearInterval(interval);
     }
 }
