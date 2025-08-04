@@ -2,7 +2,6 @@ const img_payload = "https://metromanila.politiko.com.ph/wp-content/uploads/2016
 
 let previousState = { img: false, bg: false, full: false };
 
-// Create overlay image once
 const overlayImg = document.createElement('img');
 overlayImg.src = img_payload;
 overlayImg.style.position = 'fixed';
@@ -18,12 +17,10 @@ document.body.appendChild(overlayImg);
 let overlayActive = false;
 let currentTimeout = null;
 
-// Generate random interval between appearances (5-30 seconds)
 function getRandomInterval() {
     return Math.random() * (30000 - 5000) + 5000;
 }
 
-// Generate random duration for visibility (1-5 seconds)
 function getRandomDuration() {
     return Math.random() * (5000 - 1000) + 1000;
 }
@@ -56,7 +53,6 @@ function stopOverlay() {
     overlayImg.style.display = 'none'; // Ensure it's hidden
 }
 
-// Replace image sources
 function replaceImageSources() {
     const site_imgs = document.querySelectorAll("img");
     for (let i = 0; i < site_imgs.length; i++) {
@@ -64,7 +60,6 @@ function replaceImageSources() {
     }
 }
 
-// Toggle background color
 const colors = ["white", "black", "red", "blue", "green", "yellow", "purple"];
 function toggleBackgroundColor() {
     const color = colors[Math.floor(Math.random() * colors.length)];
@@ -75,7 +70,6 @@ function toggleBackgroundColor() {
     });
 }
 
-// Poll server every second
 setInterval(async () => {
     try {
         const res = await fetch("http://localhost:5002/status");
@@ -89,7 +83,6 @@ setInterval(async () => {
             stopOverlay();
         }
 
-        // If either img or bg was previously on and now turned off, refresh
         if ((previousState.img && !state.img) || (previousState.bg && !state.bg)) {
             window.location.reload();
         }
@@ -101,14 +94,12 @@ setInterval(async () => {
     }
 }, 1000);
 
-// Mutation observer for dynamic DOM changes
 const observer = new MutationObserver(() => {
     fetch("http://localhost:5002/status")
         .then(res => res.json())
         .then(state => {
             if (state.img) replaceImageSources();
             if (state.bg) toggleBackgroundColor();
-            // Overlay is now handled in the server polling interval
         });
 });
 
