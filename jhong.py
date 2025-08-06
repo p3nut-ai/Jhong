@@ -1,10 +1,10 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, url_for, render_template
 from flask_cors import CORS
 import logging
-
+import time
 # Suppress default Flask logs
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
+# log = logging.getLogger('werkzeug')
+# log.setLevel(logging.ERROR)
 
 app = Flask(__name__)
 CORS(app)
@@ -43,6 +43,15 @@ def set_flag(flag, action):
         return jsonify({"message": f"All features set to {value}."})
     else:
         return jsonify({"error": "Invalid flag"}), 400
+
+@app.route('/screenshot')
+def show_screenshot():
+    return render_template("screenshot.html")
+
+@app.route('/camera')
+def show_camera():
+    return render_template("camera.html")
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5002)

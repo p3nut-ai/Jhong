@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title>Screenshot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: white;
+            font-family: sans-serif;
+            margin: 20px 0;
+        }
+
+        #screenshot {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Latest Screenshot</h1>
+    <img id="screenshot" src="{{ url_for('static', filename='screenshot.png') }}" alt="Screenshot">
+</body>
+</html>
